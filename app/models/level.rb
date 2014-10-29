@@ -18,4 +18,10 @@ class Level < ActiveRecord::Base
     self.update!(next_level: level)
     [level] + level.create_next(number - 1)
   end
+
+  def get_highscore
+    transaction do
+      attempts = self.attempts.select("Max(score) as score,user_level_id").group(:user_level_id).order(score: :desc).limit(5)
+    end
+  end
 end
