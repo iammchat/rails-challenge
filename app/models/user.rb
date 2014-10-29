@@ -10,10 +10,7 @@ class User < ActiveRecord::Base
     transaction do
       user_level = self.user_levels.find_or_create_by!(level: level)
       user_level.attempts.create!(score: score)
-      if user_level.high_score.nil?
-        user_level.update!(high_score: score) 
-      end
-      if user_level.high_score < score
+      if user_level.high_score.nil? || user_level.high_score < score
         user_level.update!(high_score: score) 
       end
     end
