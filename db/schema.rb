@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001045642) do
+ActiveRecord::Schema.define(version: 20141029075744) do
 
   create_table "levels", force: true do |t|
     t.integer  "number",        null: false
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20141001045642) do
     t.string   "facebook_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token_id"
+    t.integer  "device_id"
   end
 
   add_index "users", ["facebook_id"], name: "index_users_on_facebook_id", unique: true
